@@ -17,7 +17,9 @@ public class AccountController {
 
     @PostMapping ("/account")
     public CreateAccount.Response createAccount(
-            @RequestBody @Valid CreateAccount.Request request){
+            @RequestBody @Valid CreateAccount.Request request
+    ) {
+        accountService.createAccount(request.getUserID(),request.getInitialBalance());
         return CreateAccount.Response response;
     }
 
