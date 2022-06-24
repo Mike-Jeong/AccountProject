@@ -26,7 +26,15 @@ public class CreateAccount {
     @Builder
     public static class  Response{
         private Long userID;
-        private String account;
+        private String accountNumber;
         private LocalDateTime registeredAt;
+
+        public static Response from(AccountDto accountDto){
+            return Response.builder()
+                    .userID(accountDto.getUserID())
+                    .accountNumber(accountDto.getAccountNumber())
+                    .registeredAt(accountDto.getRegisteredAt())
+                    .build();
+        }
     }
 }
