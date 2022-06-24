@@ -12,7 +12,7 @@ public class CreateAccount {
     public static class  Request{
         @NotNull
         @Min(1)
-        private Long userID;
+        private Long userId;
 
         @NotNull
         @Min(100)

@@ -16,12 +16,17 @@ public class AccountController {
     private final AccountService accountService;
     private final RedisTestService redisTestService;
 
-    @PostMapping ("/account")
+    @PostMapping("/account")
     public CreateAccount.Response createAccount(
             @RequestBody @Valid CreateAccount.Request request
     ) {
-        AccountDto accountDto = accountService.createAccount(request.getUserID(),request.getInitialBalance());
-        return CreateAccount.Response.from(accountDto);
+
+        return CreateAccount.Response.from(
+                accountService.createAccount(
+                        request.getUserId(),
+                        request.getInitialBalance()
+                )
+        );
     }
 
     @GetMapping("/get-lock")
@@ -32,7 +37,7 @@ public class AccountController {
 
     @GetMapping("/account/{id}")
     public Account getAccount(
-            @PathVariable Long id){
+            @PathVariable Long id) {
         return accountService.getAccount(id);
     }
 }
