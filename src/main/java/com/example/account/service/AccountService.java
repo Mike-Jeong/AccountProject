@@ -62,13 +62,17 @@ public class AccountService {
         AccountUser accountUser = accountUserRepository.findById(userId)
                 .orElseThrow(() -> new AccountException(ErrorCode.USER_NOT_FOUND));
         Account account = accountRepository.findByAccountNumber(accountNumber)
-                .orElseThrow(() -> new AccountException(ErrorCode.USER_NOT_FOUND));
+                .orElseThrow(() -> new AccountException(ErrorCode.ACCOUNT_NOT_FOUND));
 
         validateDeleteAccount(accountUser, account);
 
         account.setAccountStatus(AccountStatus.UNREGISTERED);
         account.setUnRegisteredAt(LocalDateTime.now());
 
+        /*테스트 코드(ArgumentCaptor<Account>)를 위한 코드
+          불필요한 코드를 동작시키는 것 이기 때문에 추천하지 않음*/
+
+        //accountRepository.save(account);
 
         return AccountDto.fromEntity(account);
     }
