@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class AccountDto {
-    private Long userID;
+    private Long userId;
     private String accountNumber;
     private Long balance;
 
@@ -20,7 +20,7 @@ public class AccountDto {
 
     public static AccountDto fromEntity(Account account) {
         return AccountDto.builder()
-                .userID(account.getAccountUser().getId())
+                .userId(account.getAccountUser().getId())
                 .accountNumber(account.getAccountNumber())
                 .registeredAt(account.getRegisteredAt())
                 .unRegisteredAt(account.getUnRegisteredAt())
