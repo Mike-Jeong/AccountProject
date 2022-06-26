@@ -9,6 +9,7 @@ public enum ErrorCode {
 
     USER_NOT_FOUND("사용자가 없습니다."),
     Max_ACCOUNT_PER_USER_10("사용자 최대 계좌는 10개입니다"),
+    AMOUNT_EXCEED_BALANCE("거래 금액이 계좌 잔액보다 큽니다"),
     ACCOUNT_ALREADY_UNREGISTERED("계좌가 이미 해지되었습니"),
     BALANCE_NOT_EMPTY("잔액이 있는 계좌는 해지 할 수 없습니다"),
     ACCOUNT_NOT_FOUND("계좌를 찾을 수 없습니다"),
