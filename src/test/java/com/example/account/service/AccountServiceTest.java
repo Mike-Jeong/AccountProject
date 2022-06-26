@@ -162,6 +162,22 @@ class AccountServiceTest {
     @DisplayName("해당 유저 없음 - 계좌 해지 실패")
     void deleteAccount_UserNotFound() {
         // given
+
+        given(accountUserRepository.findById(anyLong()))
+                .willReturn(Optional.empty());
+
+        // when
+        AccountException exception = assertThrows(AccountException.class,
+                () -> accountService.deleteAccount(1L, "1234567890"));
+
+        // then
+        assertEquals(ErrorCode.USER_NOT_FOUND, exception.getErrorCode());
+    }
+
+    @Test
+    @DisplayName("해당 계좌 없음 - 계좌 해지 실패")
+    void deleteAccount_AccountNotFound() {
+        // given
         AccountUser user = AccountUser.builder()
                 .id(12L)
                 .name("Pobi").build();
@@ -176,22 +192,6 @@ class AccountServiceTest {
 
         // then
         assertEquals(ErrorCode.ACCOUNT_NOT_FOUND, exception.getErrorCode());
-    }
-
-    @Test
-    @DisplayName("해당 계좌 없음 - 계좌 해지 실패")
-    void deleteAccount_AccountNotFound() {
-        // given
-
-        given(accountUserRepository.findById(anyLong()))
-                .willReturn(Optional.empty());
-
-        // when
-        AccountException exception = assertThrows(AccountException.class,
-                () -> accountService.deleteAccount(1L, "1234567890"));
-
-        // then
-        assertEquals(ErrorCode.USER_NOT_FOUND, exception.getErrorCode());
     }
 
     @Test
