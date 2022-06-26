@@ -7,6 +7,7 @@ import com.example.account.service.RedisTestService;
 import com.example.account.service.TransactionService;
 import com.example.account.type.AccountStatus;
 import com.example.account.type.TransactionResultType;
+import com.example.account.type.TransactionType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,33 @@ class TransactionControllerTest {
                 .andExpect(jsonPath("$.transactionResultType").value("S"))
                 .andExpect(jsonPath("$.transactionId").value("transactionId"))
                 .andExpect(jsonPath("$.amount").value(11111));
+    }
+
+    @Test
+        //@DisplayName("")
+    void successQueryTransaction() throws Exception{
+        // given
+        given(transactionService.queryTransaction(anyString()))
+                .willReturn(TransactionDto.builder()
+                        .accountNumber("1234567890")
+                        .transactionType(TransactionType.USE)
+                        .transactedAt(LocalDateTime.now())
+                        .amount(11111L)
+                        .transactionId("transactionId")
+                        .transactionResultType(TransactionResultType.S)
+                        .build());
+        // when
+
+        // then
+        mockMvc.perform(get("/transaction/12345"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accountNumber").value("1234567890"))
+                .andExpect(jsonPath("$.transactionType").value("USE"))
+                .andExpect(jsonPath("$.transactionResultType").value("S"))
+                .andExpect(jsonPath("$.transactionId").value("transactionId"))
+                .andExpect(jsonPath("$.amount").value(11111));
+
     }
 
 }
