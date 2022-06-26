@@ -39,7 +39,7 @@ public class Account {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    public void useBalance(Long amount){
+    public void useBalance(Long amount) {
         if (amount > balance) {
             throw new AccountException(ErrorCode.AMOUNT_EXCEED_BALANCE);
         }
