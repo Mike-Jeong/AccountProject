@@ -12,12 +12,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AccountException.class)
     public ErrorResponse handleAccountException(AccountException e) {
-        log.error("{} is occurred.", e.getErrorCode());
+        log.error("{0} is occurred.", e.getErrorCode());
 
         return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
     }
 
-    @ExceptionHandler(AccountException.class)
+    @ExceptionHandler(Exception.class)
     public ErrorResponse handleAccountException(Exception e) {
         log.error("{0} is occurred.", e);
 
