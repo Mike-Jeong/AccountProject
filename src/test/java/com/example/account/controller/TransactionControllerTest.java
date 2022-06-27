@@ -3,7 +3,6 @@ package com.example.account.controller;
 import com.example.account.domain.Account;
 import com.example.account.dto.*;
 import com.example.account.service.AccountService;
-import com.example.account.service.RedisTestService;
 import com.example.account.service.TransactionService;
 import com.example.account.type.AccountStatus;
 import com.example.account.type.TransactionResultType;
