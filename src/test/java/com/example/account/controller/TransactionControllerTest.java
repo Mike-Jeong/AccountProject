@@ -57,9 +57,9 @@ class TransactionControllerTest {
         mockMvc.perform(post("/transaction/use")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(
-                              new UseBalance.Request(1L, "2000000000", 3000L)
+                                new UseBalance.Request(1L, "2000000000", 3000L)
                         ))
-        ).andDo(print())
+                ).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accountNumber").value("1234567890"))
                 .andExpect(jsonPath("$.transactionResultType").value("S"))
@@ -96,7 +96,7 @@ class TransactionControllerTest {
 
     @Test
         //@DisplayName("")
-    void successQueryTransaction() throws Exception{
+    void successQueryTransaction() throws Exception {
         // given
         given(transactionService.queryTransaction(anyString()))
                 .willReturn(TransactionDto.builder()

@@ -33,8 +33,8 @@ public class Transaction {
     private Long amount;
     private Long balanceSnapshot;
 
-   private String transactionId;
-   private LocalDateTime transactedAt;
+    private String transactionId;
+    private LocalDateTime transactedAt;
 
     @CreatedDate
     private LocalDateTime createdAt;

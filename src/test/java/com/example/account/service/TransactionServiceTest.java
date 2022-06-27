@@ -428,9 +428,9 @@ class TransactionServiceTest {
         // then
         assertEquals(ErrorCode.TOO_OLD_ORDER_TO_CANCEL, exception.getErrorCode());
     }
-    
+
     @Test
-    //@DisplayName("")
+        //@DisplayName("")
     void successQueryTransaction() {
         // given
         AccountUser user = AccountUser.builder()

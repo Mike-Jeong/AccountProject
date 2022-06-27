@@ -110,7 +110,7 @@ class AccountControllerTest {
 
     @Test
         //@DisplayName("")
-    void successGetAccountsByUserId() throws Exception{
+    void successGetAccountsByUserId() throws Exception {
         // given
         List<AccountDto> accountDtos = Arrays.asList(
                 AccountDto.builder()
@@ -128,7 +128,7 @@ class AccountControllerTest {
 
         // then
         mockMvc.perform(get("/account?user_id=1"))
-                        .andDo(print())
+                .andDo(print())
                 .andExpect(jsonPath("$[0].accountNumber").value("1234567890"))
                 .andExpect(jsonPath("$[0].balance").value("1000"))
                 .andExpect(jsonPath("$[1].accountNumber").value("3434567890"))
